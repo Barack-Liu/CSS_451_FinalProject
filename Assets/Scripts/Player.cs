@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using Unity.Netcode;
 using TMPro;
 
 public class Player : NetworkBehaviour
@@ -16,7 +17,7 @@ public class Player : NetworkBehaviour
     public RectTransform myHealthHolder;
     private Animator animator;
     private Animator shootAnimator;
-    private NetworkAnimator networkAnimator;
+    private Animator networkAnimator;
     public Transform hitHolder, blockHolder;
     public GameObject fistHitParticle, swordHitParticle;
     public float shakeDelay = .1f;
@@ -40,13 +41,16 @@ public class Player : NetworkBehaviour
     [SerializeField]
     public float shootingDelay = .1f;
 
-    [SyncVar]
-    public Vector3 scale;
-    [SyncVar]
-    public string ratio;
-    [SyncVar]
-    public bool isDead, isWinner;
-
+    //[SyncVar]
+    //public Vector3 scale;
+    public NetworkVariable<Vector3> scale = new NetworkVariable<Vector3>();
+    //[SyncVar]
+    //public string ratio;
+    public NetworkVariable<string> ratio = new NetworkVariable<string>();
+    //[SyncVar]
+    //public bool isDead, isWinner;
+    public NetworkVariable<bool> isDead = new NetworkVariable<bool>();
+    public NetworkVariable<bool> isWinner = new NetworkVariable<bool>();
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -71,7 +75,7 @@ public class Player : NetworkBehaviour
 
     private void SetupHealthBar()
     {
-        if (isLocalPlayer)
+        if (IsLocalPlayer)
         {
             myHealth = GameObject.Find("local player health").GetComponent<RectTransform>();
             myHealthHolder = GameObject.Find("local player health holder").GetComponent<RectTransform>();
@@ -128,14 +132,14 @@ public class Player : NetworkBehaviour
             currentHealth = 0;
         SetHealthBar(currentHealth);
 
-        if (isLocalPlayer)
+        if (IsLocalPlayer)
         {
             if (currentHealth == 0)
                 Die();
             animator.SetInteger("HitNO", Random.Range(1, 4));
             animator.SetTrigger("GotHit");
         }
-        if (currentHealth == 0 && !isLocalPlayer)
+        if (currentHealth == 0 && !IsLocalPlayer)
         {
             manager.localPlayer.GetComponent<Player>().Win();            
         }

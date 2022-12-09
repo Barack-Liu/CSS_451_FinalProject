@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Networking;
+using Unity.Netcode;
 using System;
 
 public class MyNetManager : NetworkManager

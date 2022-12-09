@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
+using Unity.Netcode;
 
 public class PlayerSetup : NetworkBehaviour
 {
@@ -15,7 +15,7 @@ public class PlayerSetup : NetworkBehaviour
     {
         player_id = GetComponent<NetworkIdentity>().netId.ToString();
 
-        if (!isLocalPlayer)
+        if (!IsLocalPlayer)
         {
             this.gameObject.name = "oponent";
             GameObject localPlayer = GameObject.Find("local player");
@@ -37,8 +37,8 @@ public class PlayerSetup : NetworkBehaviour
         else
         {
             this.gameObject.name = "local player";
-            if (isServer)
-                Manager.isServer = true;
+            if (IsServer)
+                Manager.IsServer = true;
             GameObject oponent = GameObject.Find("oponent");
             if(this.GetComponent<PlayerMovement>().oponent == null && oponent != null)
             {
