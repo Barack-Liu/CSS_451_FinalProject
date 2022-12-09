@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
+using Unity.Netcode;    
 
 public class FistAttack : Attack
 {
     public ActionControl actionControl;
     public int damage = 5;
     public Animator animator;
-    public NetworkAnimator networkAnimator;
+    public Animator networkAnimator;
 
-    [Client]
+    //[Client]
     public override void DealDamage(string id, bool isBlocked)
     {
         if (!isBlocked)

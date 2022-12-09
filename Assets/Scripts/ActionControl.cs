@@ -1,6 +1,7 @@
-﻿using UnityEngine.Networking;
+﻿//using UnityEngine.Networking;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Netcode;
 
 public class ActionControl : NetworkBehaviour
 {
@@ -20,7 +21,7 @@ public class ActionControl : NetworkBehaviour
 
     public void Damage(string id, int damage, string type)
     {
-        if (isServer)
+        if (IsServer)
             RpcDamage(id, damage, type);
         else
             CmdDamage(id, damage, type);
@@ -28,7 +29,7 @@ public class ActionControl : NetworkBehaviour
 
     public void Block(string id, string type)
     {
-        if (Manager.isServer)
+        if (Manager.IsServer)
             RpcBlock(id, type);
         else
             CmdBlock(id, type);
@@ -36,7 +37,7 @@ public class ActionControl : NetworkBehaviour
 
     public void Shoot(string id)
     {
-        if (Manager.isServer)
+        if (Manager.IsServer)
             RpcShoot(id);
         else
             CmdShoot(id);
@@ -46,7 +47,7 @@ public class ActionControl : NetworkBehaviour
     {
         List<string> allPlayerId = Manager.GetAllPlayer();
 
-        if (Manager.isServer)
+        if (Manager.IsServer)
         {
             foreach (string id in allPlayerId)
                 RpcResetPlayer(id);
@@ -60,73 +61,73 @@ public class ActionControl : NetworkBehaviour
 
     public void SetOwnRatio(string id, string ratio)
     {
-        if (Manager.isServer)
+        if (Manager.IsServer)
             RpcSetOwnRatio(id, ratio);
         else
             CmdSetOwnRatio(id, ratio);
     }
 
 
-    [Command]
-    public void CmdDamage(string id, int damage, string type)
+    [ServerRpc]
+    public void CmdDamageRpc(string id, int damage, string type)
     {
         RpcDamage(id, damage, type);
     }
 
     [ClientRpc]
-    public void RpcDamage(string id, int damage, string type)
+    public void RpcDamageRpc(string id, int damage, string type)
     {
         player = Manager.GetPlayer(id);
         player.TakeDamage(damage, type);
     }
     
-    [Command]
-    public void CmdBlock(string id, string type)
+    [ServerRpc]
+    public void CmdBlockRpc(string id, string type)
     {
         RpcBlock(id, type);
     }
 
     [ClientRpc]
-    public void RpcBlock(string id, string type)
+    public void RpcBlockRpc(string id, string type)
     {
         player = Manager.GetPlayer(id);
         player.BlockAttack(type);
     }
     
-    [Command]
-    public void CmdSetOwnRatio(string id, string ratio)
+    [ServerRpc]
+    public void CmdSetOwnRatioRpc(string id, string ratio)
     {
         RpcSetOwnRatio(id, ratio);
     }
 
     [ClientRpc]
-    public void RpcSetOwnRatio(string id, string ratio)
+    public void RpcSetOwnRatioRpc(string id, string ratio)
     {
         player = Manager.GetPlayer(id);
         player.SetMyRatio(ratio);
     }
 
-    [Command]
-    public void CmdShoot(string id)
+    [ServerRpc]
+    public void CmdShootRpc(string id)
     {
         RpcShoot(id);
     }
 
     [ClientRpc]
-    public void RpcShoot(string id)
+    public void RpcShootRpc(string id)
     {
         player = Manager.GetPlayer(id);
         player.ShootFireball();
     }
 
-    [Command]
-    public void CmdResetPlayer(string id)
+    [ServerRpc]
+    public void CmdResetPlayerRpc(string id)
     {
         RpcResetPlayer(id);
     }
 
     [ClientRpc]
-    public void RpcResetPlayer(string id)
+    public void RpcResetPlayerRpc(string id)
     {
         player = Manager.GetPlayer(id);
         player.ResetAll();

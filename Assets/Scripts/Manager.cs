@@ -9,7 +9,7 @@ public class Manager : MonoBehaviour
 {
     public bool pcInput = true;
     private static Dictionary<string, Player> players = new Dictionary<string, Player>();
-    public static bool isServer = false;
+    public static bool IsServer = false;
     private string localId;
     public GameObject joystick;
     [HideInInspector]
@@ -45,7 +45,7 @@ public class Manager : MonoBehaviour
 
     private Animator animator;
     public Animator shootAnimator;
-    private NetworkAnimator networkAnimator;
+    private Animator networkAnimator;
     private ActionControl actionControl;
 
     private bool isGuarding = false;
