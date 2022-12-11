@@ -11,7 +11,7 @@ public class HealthBarScript : MonoBehaviour
 
     private void Start()
     {
-        SetMaxHealth();
+        SetHealth();
     }
 
     void Update()
@@ -19,14 +19,9 @@ public class HealthBarScript : MonoBehaviour
         SetHealth();
     }
 
-    public void SetMaxHealth()
-    {
-        slider.maxValue = playerCube.GetComponent<StatSheet>().HP;
-        slider.value = playerCube.GetComponent<StatSheet>().HP;
-    }
-
     public void SetHealth()
     {
+        slider.maxValue = playerCube.GetComponent<StatSheet>().HP;
         slider.value = playerCube.GetComponent<StatSheet>().HP;
     }
 }

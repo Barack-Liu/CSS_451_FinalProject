@@ -140,7 +140,7 @@ public class BattleScene : MonoBehaviour
     public void PlayerTurn()
     {
         //playerCube.GetComponentInChildren<MovementControls>().anim.Play("Armature|Sword_atk01");
-
+        transform.GetComponent<General>().PhysicalDefense();
         // Check if player attack is successful
         bool attackRoll = otherCube.GetComponent<Interact>().AttackRoll(playerCube.GetComponent<StatSheet>().STRMod);
         if (attackRoll == true)

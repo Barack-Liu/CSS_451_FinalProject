@@ -22,14 +22,31 @@ public class General : MonoBehaviour
         root.CompositeXform(ref i);
     }
 
-    public void PhysicalAttack(string bodypart)
+    public void PhysicalAttack()
     {
         // do scenenode transformation
     }
 
-    public void PhysicalDefense(string bodypart)
+    public void PhysicalDefense()
     {
         // do scenenode transformation
+        // turn right arm
+        Transform body = transform.Find("Body");
+        Transform rightarm = body.Find("RightArm");
+        Vector3 nRightarm = rightarm.up;
+        Quaternion q = Quaternion.AngleAxis(-90f, nRightarm);
+        float distance = rightarm.Find("Geom").Find("Arm").localScale.y;
+        Vector3 pivot = rightarm.localPosition + nRightarm * distance / 2;
+        rightarm.localPosition = q * (rightarm.localPosition - pivot) + pivot;
+        rightarm.localRotation = q * rightarm.localRotation;
+        // turn right small arm
+        Transform rightsmallarm = rightarm.Find("Arm");
+        Vector3 nRighrsmallarm = rightsmallarm.forward;
+        q = Quaternion.AngleAxis(90f, nRighrsmallarm);
+        distance = rightsmallarm.Find("Geom").Find("Arm").localScale.y;
+        pivot = rightsmallarm.localPosition + rightsmallarm.forward * distance / 2;
+        rightsmallarm.localPosition = q * (rightsmallarm.localPosition - pivot) + pivot;
+        rightsmallarm.localRotation = q * rightsmallarm.localRotation;
     }
 
     public void MagicAttack()
