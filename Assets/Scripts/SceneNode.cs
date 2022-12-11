@@ -17,7 +17,7 @@ public class SceneNode : MonoBehaviour {
 	protected void Start () {
         InitializeSceneNode();
         // Debug.Log("PrimitiveList:" + PrimitiveList.Count);
-        Debug.Assert(AxisFrame != null);
+        // Debug.Assert(AxisFrame != null);
         initialPos = transform.localPosition;
         initialRot = transform.localRotation;
         initialSca = transform.localScale;
