@@ -1,0 +1,48 @@
+﻿<Properties StartupConfiguration="{0AE11BA1-1CFD-083C-82DF-6468ECF0CDF0}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MovementControls.cs">
+    <Files>
+      <File FileName="Assets/Scripts/General.cs" Line="62" Column="45" />
+      <File FileName="Assets/Scripts/BattleScene.cs" Line="179" Column="60" />
+      <File FileName="Assets/Scripts/MovementControls.cs" Line="59" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CSS_451_FinalProject" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Characters" expanded="True" />
+              <Node name="Images" expanded="True" />
+              <Node name="Material" expanded="True">
+                <Node name="cavefloor1-Unity" expanded="True" />
+                <Node name="cratered-rock-Unity" expanded="True" />
+                <Node name="dungeon-stone1-Unity" expanded="True" />
+                <Node name="tiledstone1-OGL" expanded="True" />
+              </Node>
+              <Node name="Scenes" expanded="True" />
+              <Node name="Scripts" expanded="True">
+                <Node name="MovementControls.cs" selected="True" />
+              </Node>
+              <Node name="SineVFX" expanded="True">
+                <Node name="TranslucentCrystals" expanded="True">
+                  <Node name="Prefabs" expanded="True" />
+                  <Node name="Resources" expanded="True">
+                    <Node name="Meshes" expanded="True" />
+                    <Node name="Shaders" expanded="True" />
+                    <Node name="Textures" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="7cdebd4a-9c6f-44c4-bbd0-3e2648da3358" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
