@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -137,10 +137,13 @@ public class BattleScene : MonoBehaviour
         CheckEnemyHP();
     }
 
-    public void PlayerTurn()
+    public void PlayerTurnAttack()
     {
         //playerCube.GetComponentInChildren<MovementControls>().anim.Play("Armature|Sword_atk01");
-        transform.GetComponent<General>().PhysicalDefense();
+
+        //Detect player's attack;
+        transform.GetComponent<General>().PhysicalAttack();
+
         // Check if player attack is successful
         bool attackRoll = otherCube.GetComponent<Interact>().AttackRoll(playerCube.GetComponent<StatSheet>().STRMod);
         if (attackRoll == true)
@@ -165,6 +168,40 @@ public class BattleScene : MonoBehaviour
          *  If not, make EnemyTurn() after 1 seconds of delay to allow animations to finish
          */
         if(currentState != BattleStates.WIN) { Invoke("EnemyTurn", 1f); }
+        else { WinBattle(); }
+    }
+
+    public void PlayerTurnDefend()
+    {
+        //playerCube.GetComponentInChildren<MovementControls>().anim.Play("Armature|Sword_atk01");
+
+        //Detect player's defend;
+        transform.GetComponent<General>().PhysicalDefend();
+
+        // Check if player attack is successful
+        bool attackRoll = otherCube.GetComponent<Interact>().AttackRoll(playerCube.GetComponent<StatSheet>().STRMod);
+        if (attackRoll == true)
+        {
+            SkillCheck damageCheck = new SkillCheck(6, 1, playerCube.GetComponent<StatSheet>().STRMod);
+            otherCube.GetComponent<StatSheet>().HP -= damageCheck.Roll();
+            audioSource.PlayOneShot(playerHitSound);
+        }
+        else
+        {
+            // if attack missed
+            audioSource.PlayOneShot(missSound);
+            Debug.Log("ENEMY dodged!");
+        }
+
+        CheckPlayerHP();
+        CheckEnemyHP();
+        playerMadeMove = true;
+
+        /** Check if player won.
+         *  If player won, WinBattle()
+         *  If not, make EnemyTurn() after 1 seconds of delay to allow animations to finish
+         */
+        if (currentState != BattleStates.WIN) { Invoke("EnemyTurn", 1f); }
         else { WinBattle(); }
     }
 
@@ -213,6 +250,7 @@ public class BattleScene : MonoBehaviour
         otherCube.SetActive(false);
         enemies = GameObject.FindGameObjectsWithTag("enemy");
     }
+
 
     public void Run()
     {

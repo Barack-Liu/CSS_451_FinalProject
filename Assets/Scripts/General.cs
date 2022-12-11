@@ -25,16 +25,70 @@ public class General : MonoBehaviour
     public void PhysicalAttack()
     {
         // do scenenode transformation
+        StartCoroutine(attackRoutine());
     }
 
-    public void PhysicalDefense()
+    public void PhysicalDefend()
     {
         // do scenenode transformation
-        StartCoroutine(defenseRoutine());
+        StartCoroutine(defendRoutine());
     }
 
-    IEnumerator defenseRoutine()
+    IEnumerator attackRoutine()
     {
+        // turn right arm
+        Transform body = transform.Find("Body");
+        Transform rightarm = body.Find("RightArm");
+        Vector3 nRightarm = rightarm.up;
+        Quaternion q = Quaternion.AngleAxis(-70f, nRightarm);
+        float distance = rightarm.Find("Geom").Find("Arm").localScale.y;
+        Vector3 pivot = rightarm.localPosition + nRightarm * distance / 2;
+        rightarm.localPosition = q * (rightarm.localPosition - pivot) + pivot;
+        rightarm.localRotation = q * rightarm.localRotation;
+        // turn right hand
+        Transform rightsmallarm = rightarm.Find("Arm");
+        Transform righthand = rightsmallarm.Find("Hand");
+        Vector3 nRighthand = righthand.right;
+        q = Quaternion.AngleAxis(75f, nRighthand);
+        pivot = righthand.localPosition;
+        righthand.localPosition = q * (righthand.localPosition - pivot) + pivot;
+        righthand.localRotation = q * righthand.localRotation;
+        yield return new WaitForSeconds(1);
+        root.Reset();
+    }
+
+    IEnumerator defendRoutine()
+    {
+        // turn left arm
+        Transform body = transform.Find("Body");
+        Transform rightarm = body.Find("LeftArm");
+        Vector3 nRightarm = rightarm.up;
+        Quaternion q = Quaternion.AngleAxis(90f, nRightarm);
+        float distance = rightarm.Find("Geom").Find("Arm").localScale.y;
+        Vector3 pivot = rightarm.localPosition + nRightarm * distance / 2;
+        rightarm.localPosition = q * (rightarm.localPosition - pivot) + pivot;
+        rightarm.localRotation = q * rightarm.localRotation;
+        // turn left small arm
+        Transform rightsmallarm = rightarm.Find("Arm");
+        Vector3 nRighrsmallarm = rightsmallarm.forward;
+        q = Quaternion.AngleAxis(90f, nRighrsmallarm);
+        distance = rightsmallarm.Find("Geom").Find("Arm").localScale.y;
+        pivot = rightsmallarm.localPosition + rightsmallarm.forward * distance / 2;
+        rightsmallarm.localPosition = q * (rightsmallarm.localPosition - pivot) + pivot;
+        rightsmallarm.localRotation = q * rightsmallarm.localRotation;
+        yield return new WaitForSeconds(1);
+        root.Reset();
+    }
+
+    public void MagicAttack()
+    {
+        // do scenenode transformation
+        StartCoroutine(magicAttackRoutine());
+    }
+
+    IEnumerator magicAttackRoutine()
+    {
+        // turn right arm
         Transform body = transform.Find("Body");
         Transform rightarm = body.Find("RightArm");
         Vector3 nRightarm = rightarm.up;
@@ -53,11 +107,6 @@ public class General : MonoBehaviour
         rightsmallarm.localRotation = q * rightsmallarm.localRotation;
         yield return new WaitForSeconds(1);
         root.Reset();
-    }
-
-    public void MagicAttack()
-    {
-        // do scenenode transformation
     }
 
     public void MagicDefense()
