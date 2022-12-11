@@ -30,7 +30,11 @@ public class General : MonoBehaviour
     public void PhysicalDefense()
     {
         // do scenenode transformation
-        // turn right arm
+        StartCoroutine(defenseRoutine());
+    }
+
+    IEnumerator defenseRoutine()
+    {
         Transform body = transform.Find("Body");
         Transform rightarm = body.Find("RightArm");
         Vector3 nRightarm = rightarm.up;
@@ -47,6 +51,8 @@ public class General : MonoBehaviour
         pivot = rightsmallarm.localPosition + rightsmallarm.forward * distance / 2;
         rightsmallarm.localPosition = q * (rightsmallarm.localPosition - pivot) + pivot;
         rightsmallarm.localRotation = q * rightsmallarm.localRotation;
+        yield return new WaitForSeconds(1);
+        root.Reset();
     }
 
     public void MagicAttack()
