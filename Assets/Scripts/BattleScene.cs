@@ -18,7 +18,7 @@ public class BattleScene : MonoBehaviour
     [SerializeField] AudioClip enemyHitSound;
     [SerializeField] AudioClip missSound;
 
-    private AudioSource audioSource;
+    //private AudioSource audioSource;
 
     private bool playerMadeMove = false; // has player clicked FIGHT?
 
@@ -44,7 +44,7 @@ public class BattleScene : MonoBehaviour
 
         currentState = BattleStates.BEGIN;
         playerPosVector.currentState = PlayerPosVector.MapStates.NORMAL;
-        audioSource = gameObject.GetComponent<AudioSource>();
+        //audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -122,14 +122,14 @@ public class BattleScene : MonoBehaviour
             SkillCheck damageCheck = new SkillCheck(6, 1, otherCube.GetComponent<StatSheet>().STRMod);
             playerCube.GetComponent<StatSheet>().HP -= damageCheck.Roll();
 
-            audioSource.PlayOneShot(enemyHitSound);
+            //audioSource.PlayOneShot(enemyHitSound);
 
             Debug.Log("ENEMY hit PLAYER.");
         }
         else
         {
             // if attack missed
-            audioSource.PlayOneShot(missSound);
+            //audioSource.PlayOneShot(missSound);
             Debug.Log("PLAYER dodged!");
         }
 
@@ -147,12 +147,12 @@ public class BattleScene : MonoBehaviour
         {
             SkillCheck damageCheck = new SkillCheck(6, 1, playerCube.GetComponent<StatSheet>().STRMod);
             otherCube.GetComponent<StatSheet>().HP -= damageCheck.Roll();
-            audioSource.PlayOneShot(playerHitSound);
+            //audioSource.PlayOneShot(playerHitSound);
         }
         else
         {
             // if attack missed
-            audioSource.PlayOneShot(missSound);
+            //audioSource.PlayOneShot(missSound);
             Debug.Log("ENEMY dodged!");
         }
 
@@ -192,7 +192,7 @@ public class BattleScene : MonoBehaviour
         {
             // Happens on player death:
             currentState = BattleStates.LOSE;
-            audioSource.PlayOneShot(deathSound);
+            //audioSource.PlayOneShot(deathSound);
             Debug.Log("PLAYER has LOST the battle.");
             Invoke("ReloadLevel", 3f); // Reload current scene after 3 seconds delay
         }
