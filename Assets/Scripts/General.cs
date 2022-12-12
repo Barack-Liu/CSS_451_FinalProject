@@ -9,10 +9,12 @@ public class General : MonoBehaviour
     public float ATK;
     public float DEF;
 
+    public GameObject magic;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Assert(magic != null);
     }
 
     // Update is called once per frame
@@ -105,6 +107,9 @@ public class General : MonoBehaviour
         pivot = rightsmallarm.localPosition + rightsmallarm.forward * distance / 2;
         rightsmallarm.localPosition = q * (rightsmallarm.localPosition - pivot) + pivot;
         rightsmallarm.localRotation = q * rightsmallarm.localRotation;
+        Instantiate(magic);
+        BattleScene bs = transform.GetComponent<BattleScene>();
+        magic.GetComponent<Fireball>().SetEndPts(bs.playerCube.transform.localPosition, bs.otherCube.transform.localPosition);
         yield return new WaitForSeconds(1);
         root.Reset();
     }

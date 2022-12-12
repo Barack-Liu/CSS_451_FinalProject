@@ -205,6 +205,40 @@ public class BattleScene : MonoBehaviour
         else { WinBattle(); }
     }
 
+    public void PlayerTurnSkill()
+    {
+        //playerCube.GetComponentInChildren<MovementControls>().anim.Play("Armature|Sword_atk01");
+
+        //Detect player's attack;
+        transform.GetComponent<General>().MagicAttack();
+
+        // Check if player attack is successful
+        bool attackRoll = otherCube.GetComponent<Interact>().AttackRoll(playerCube.GetComponent<StatSheet>().STRMod);
+        if (attackRoll == true)
+        {
+            SkillCheck damageCheck = new SkillCheck(6, 1, playerCube.GetComponent<StatSheet>().STRMod);
+            otherCube.GetComponent<StatSheet>().HP -= damageCheck.Roll();
+            audioSource.PlayOneShot(playerHitSound);
+        }
+        else
+        {
+            // if attack missed
+            audioSource.PlayOneShot(missSound);
+            Debug.Log("ENEMY dodged!");
+        }
+
+        CheckPlayerHP();
+        CheckEnemyHP();
+        playerMadeMove = true;
+
+        /** Check if player won.
+         *  If player won, WinBattle()
+         *  If not, make EnemyTurn() after 1 seconds of delay to allow animations to finish
+         */
+        if(currentState != BattleStates.WIN) { Invoke("EnemyTurn", 1f); }
+        else { WinBattle(); }
+    }
+
     // Finds the closest enemy
     // Not yet optimized to handle multiple enemies within the same radius
     public GameObject FindClosestEnemy()
