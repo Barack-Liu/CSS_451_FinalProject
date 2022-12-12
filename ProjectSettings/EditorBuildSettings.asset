@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Game/Scenes/Main.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Misc/Animation.unity
-    guid: 47c2f21c3381a5447a517ff4a1fe0156
+    path: Assets/Scenes/Cavern.unity
+    guid: 47074dd0e2ed42c429b4dc13d6a76cfd
+  - enabled: 1
+    path: Assets/Scenes/BattleSkelly.unity
+    guid: 42eaea3510997d74f9d8e1f4892cbf97
+  - enabled: 1
+    path: Assets/Scenes/BattleSkelly1.unity
+    guid: 50174f02e0432a844b2d8cfe5a50a76d
+  - enabled: 1
+    path: Assets/Scenes/BattleSkelly2.unity
+    guid: 8ec5b3edd204de648930635de5b89f96
+  - enabled: 1
+    path: Assets/Demo.unity
+    guid: 2b02c29601fc84e49a18fde7fed33f95
   m_configObjects: {}
