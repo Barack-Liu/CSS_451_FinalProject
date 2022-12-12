@@ -44,13 +44,13 @@ public class FightMenu : MonoBehaviour
     void Resume()
     {
         pauseMenuUI.SetActive(false);
-        //playerObject.GetComponentInChildren<MovementControls>().toggle = true;
+        playerObject.GetComponentInChildren<MovementControls>().toggle = true;
     }
 
     void Pause()
     {
         pauseMenuUI.SetActive(true);
-        //playerObject.GetComponentInChildren<MovementControls>().toggle = false;
-        //playerObject.GetComponentInChildren<MovementControls>().anim.SetInteger("condition", 0);
+        playerObject.GetComponentInChildren<MovementControls>().toggle = false;
+        playerObject.GetComponentInChildren<MovementControls>().anim.SetInteger("condition", 0);
     }
 }
