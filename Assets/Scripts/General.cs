@@ -56,7 +56,7 @@ public class General : MonoBehaviour
         righthand.localPosition = q * (righthand.localPosition - pivot) + pivot;
         righthand.localRotation = q * righthand.localRotation;
         yield return new WaitForSeconds(1);
-        root.Reset();
+        body.GetComponent<SceneNode>().Reset();
     }
 
     IEnumerator defendRoutine()
@@ -79,7 +79,7 @@ public class General : MonoBehaviour
         rightsmallarm.localPosition = q * (rightsmallarm.localPosition - pivot) + pivot;
         rightsmallarm.localRotation = q * rightsmallarm.localRotation;
         yield return new WaitForSeconds(1);
-        root.Reset();
+        body.GetComponent<SceneNode>().Reset();
     }
 
     public void MagicAttack()
@@ -111,7 +111,7 @@ public class General : MonoBehaviour
         BattleScene bs = transform.GetComponent<BattleScene>();
         magic.GetComponent<Fireball>().SetEndPts(bs.playerCube.transform.localPosition, bs.otherCube.transform.localPosition);
         yield return new WaitForSeconds(1);
-        root.Reset();
+        body.GetComponent<SceneNode>().Reset();
     }
 
     public void MagicDefense()
