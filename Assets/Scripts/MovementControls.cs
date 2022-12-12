@@ -16,7 +16,7 @@ public class MovementControls : MonoBehaviour
     private Transform mainCameraTransform = null;
 
     private CharacterController controller = null;
-    public Animator anim;
+    //public Animator anim;
 
     public Vector3 gameStartVector;
     public PlayerPosVector startingPosition;
@@ -24,7 +24,7 @@ public class MovementControls : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         mainCameraTransform = Camera.main.transform;
         transform.position = gameStartVector;
 
@@ -69,17 +69,17 @@ public class MovementControls : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 movementSpeed = 6f;
-                anim.SetInteger("condition", 2);
+                //anim.SetInteger("condition", 2);
             }
             else
             {
-                anim.SetInteger("condition", 1);
+                //anim.SetInteger("condition", 1);
                 movementSpeed = 2f;
             }
         }
         else
         {
-            anim.SetInteger("condition", 0);
+            //anim.SetInteger("condition", 0);
             movementSpeed = 2f;
         }
 
