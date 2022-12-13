@@ -112,6 +112,7 @@ public class BattleScene : MonoBehaviour
 
         // Enemy hit check roll
         Debug.Log("ENEMY attacks.");
+        battleUI.battleStatus.text = new string("ENEMY attacks");
         SkillCheck enemyHitCheck = new SkillCheck(20, 1, otherCube.GetComponent<StatSheet>().STRMod);
         int roll = enemyHitCheck.Roll();
 
@@ -125,12 +126,14 @@ public class BattleScene : MonoBehaviour
             audioSource.PlayOneShot(enemyHitSound);
 
             Debug.Log("ENEMY hit PLAYER.");
+            battleUI.battleStatus.text = new string("ENEMY hit PLAYER.");
         }
         else
         {
             // if attack missed
             audioSource.PlayOneShot(missSound);
             Debug.Log("PLAYER dodged!");
+            battleUI.battleStatus.text = new string("PLAYER dodged!");
         }
 
         CheckPlayerHP();
@@ -157,6 +160,7 @@ public class BattleScene : MonoBehaviour
             // if attack missed
             audioSource.PlayOneShot(missSound);
             Debug.Log("ENEMY dodged!");
+            battleUI.battleStatus.text = new string("ENEMY dodged!");
         }
 
         CheckPlayerHP();
@@ -191,6 +195,7 @@ public class BattleScene : MonoBehaviour
             // if attack missed
             audioSource.PlayOneShot(missSound);
             Debug.Log("ENEMY dodged!");
+            battleUI.battleStatus.text = new string("ENEMY dodged!");
         }
 
         CheckPlayerHP();
@@ -225,6 +230,7 @@ public class BattleScene : MonoBehaviour
             // if attack missed
             audioSource.PlayOneShot(missSound);
             Debug.Log("ENEMY dodged!");
+            battleUI.battleStatus.text = new string("ENEMY dodged!");
         }
 
         CheckPlayerHP();
@@ -265,6 +271,7 @@ public class BattleScene : MonoBehaviour
             currentState = BattleStates.LOSE;
             audioSource.PlayOneShot(deathSound);
             Debug.Log("PLAYER has LOST the battle.");
+            battleUI.battleStatus.text = new string("PLAYER has LOST the battle.");
             Invoke("ReloadLevel", 3f); // Reload current scene after 3 seconds delay
         }
     }
@@ -279,6 +286,7 @@ public class BattleScene : MonoBehaviour
     private void WinBattle()
     {
         Debug.Log("PLAYER has WON the battle.");
+        battleUI.battleStatus.text = new string("PLAYER has WON the battle.");
         playerPosVector.currentState = PlayerPosVector.MapStates.NORMAL;
         currentState = BattleStates.NONE;
         otherCube.SetActive(false);
@@ -290,6 +298,7 @@ public class BattleScene : MonoBehaviour
     {
         playerPosVector.currentState = PlayerPosVector.MapStates.RAN;
         Debug.Log("pressed RUN");
+        battleUI.battleStatus.text = new string("pressed RUN");
         currentState = BattleStates.LOSE;
         otherCube.SetActive(false);
         enemies = GameObject.FindGameObjectsWithTag("enemy");

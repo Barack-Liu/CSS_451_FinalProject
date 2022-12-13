@@ -11,6 +11,12 @@ public class FightMenu : MonoBehaviour
     public BattleScene battleSceneRef;
 
     public PlayerPosVector playerPosVector;
+    public TMPro.TMP_Text battleStatus;
+
+    void Start()
+    {
+        Debug.Assert(battleStatus != null);
+    }
 
     void Update()
     {

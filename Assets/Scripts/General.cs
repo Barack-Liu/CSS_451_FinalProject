@@ -109,19 +109,24 @@ public class General : MonoBehaviour
         rightsmallarm.localRotation = q * rightsmallarm.localRotation;
         Instantiate(magic);
         BattleScene bs = transform.GetComponent<BattleScene>();
-        magic.GetComponent<Fireball>().SetEndPts(bs.playerCube.transform.localPosition, bs.otherCube.transform.localPosition);
+        magic.GetComponent<Fireball>().SetEndPts(CalculateSpearHeadPosition(), bs.otherCube.transform.localPosition);
         yield return new WaitForSeconds(1);
         body.GetComponent<SceneNode>().Reset();
     }
 
-    public void MagicDefense()
+    public Vector3 CalculateSpearHeadPosition()
     {
-        // do scenenode transformation
-    }
-
-    public void ReceiveDamage(float damage)
-    {
-        HP -= damage;
-        // need to check death
+        SceneNode body = root.transform.Find("Body").GetComponent<SceneNode>();
+        SceneNode rightarm = body.transform.Find("RightArm").GetComponent<SceneNode>();
+        SceneNode arm = rightarm.transform.Find("Arm").GetComponent<SceneNode>();
+        SceneNode hand = arm.transform.Find("Hand").GetComponent<SceneNode>();
+        Matrix4x4 basetrs = Matrix4x4.TRS(root.transform.localPosition + root.NodeOrigin, root.transform.localRotation, root.transform.localScale);
+        Matrix4x4 bodytrs = Matrix4x4.TRS(body.transform.localPosition + body.NodeOrigin, body.transform.localRotation, body.transform.localScale);
+        Matrix4x4 rightarmtrs = Matrix4x4.TRS(rightarm.transform.localPosition + rightarm.NodeOrigin, rightarm.transform.localRotation, rightarm.transform.localScale);
+        Matrix4x4 armtrs = Matrix4x4.TRS(arm.transform.localPosition + arm.NodeOrigin, arm.transform.localRotation, arm.transform.localScale);
+        Matrix4x4 handtrs = Matrix4x4.TRS(hand.transform.localPosition + hand.NodeOrigin, hand.transform.localRotation, hand.transform.localScale);
+        Matrix4x4 m = basetrs * bodytrs * rightarmtrs * armtrs * handtrs;
+        Vector3 position = m.GetColumn(3);
+        return position + hand.transform.Find("Geom").Find("Spear").up * -4f;
     }
 }
