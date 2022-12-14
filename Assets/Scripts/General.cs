@@ -15,6 +15,10 @@ public class General : MonoBehaviour
     void Start()
     {
         Debug.Assert(magic != null);
+        Camera.main.GetComponent<CamController>().target = transform;
+        GameObject.Find("SmallViewCamera").GetComponent<SmallViewCamera>().general = root;
+        GameObject.Find("Canvas").GetComponent<FightMenu>().playerObject = gameObject;
+        GameObject.Find("Canvas").GetComponent<FightMenu>().battleSceneRef = transform.GetComponent<BattleScene>();
     }
 
     // Update is called once per frame
