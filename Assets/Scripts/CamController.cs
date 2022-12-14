@@ -88,27 +88,21 @@ public class CamController : MonoBehaviour
         if (!target)
             return;
 
-        Vector3 vTargetOffset3;
+        
 
         // If either mouse buttons are down, let the mouse govern camera position 
         if (GUIUtility.hotControl == 0)
         {
-            if (Input.GetKey(KeyCode.LeftControl))
-            {
 
-            }
-            else
+            if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
             {
-                if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
-                {
-                    //Check to see if mouse input is allowed on the axis
-                    if (allowMouseInputX)
-                        xDeg += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
-                    if (allowMouseInputY)
-                        yDeg -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
-
-                }
+            //Check to see if mouse input is allowed on the axis
+            if (allowMouseInputX)
+                xDeg += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
+            if (allowMouseInputY)
+                yDeg -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
             }
+            
         }
         ClampAngle(yDeg);
 

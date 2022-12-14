@@ -1,0 +1,2 @@
+1. network feature added
+2.deactivate general after clicking host
