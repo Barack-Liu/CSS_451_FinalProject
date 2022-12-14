@@ -18,6 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/BattleSkelly2.unity
     guid: 8ec5b3edd204de648930635de5b89f96
   - enabled: 1
-    path: Assets/Scenes/Demo.unity
+    path: Assets/Scenes/Main.unity
     guid: 2b02c29601fc84e49a18fde7fed33f95
   m_configObjects: {}
