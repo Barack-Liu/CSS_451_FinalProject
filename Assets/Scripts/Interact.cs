@@ -21,4 +21,31 @@ public class Interact : MonoBehaviour
         bool success = roll.CheckSuccess(difficulty, roll.Roll());
         return success;
     }
+
+    public void PhysicalAttack(float x, float y, float z)
+    {
+        // do scenenode transformation
+        StartCoroutine(enemyAttackRoutine(x,y,z));
+    }
+
+    IEnumerator enemyAttackRoutine(float x, float y, float z)
+    {
+        // Get enemy's position;
+        Vector3 enemy;
+        enemy = transform.localPosition;
+
+        //Get general's position;
+        Vector3 general;
+        general = new Vector3 (x, y, z);
+
+        //Move the enemy to the general the postion;
+        transform.localPosition = general;
+
+        //Wait for 1 second;
+        yield return new WaitForSeconds(0.1f);
+
+        //Move the enemy to the orignal position;
+        transform.localPosition = enemy;
+        
+    }
 }
