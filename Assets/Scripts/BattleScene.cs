@@ -104,7 +104,17 @@ public class BattleScene : MonoBehaviour
 
     public void EnemyTurn()
     {
-        // Make the combat loop pause
+        //Get general's location;
+        float generalX;
+        float generalY;
+        float generalZ;
+        generalX = transform.localPosition.x;
+        generalY = transform.localPosition.y;
+        generalZ = transform.localPosition.z;
+
+        //Enemy attack;
+        otherCube.GetComponent<Interact>().PhysicalAttack(generalX,generalY,generalZ);// Make the combat loop pause
+        
         playerMadeMove = false;
 
         //animation
@@ -144,16 +154,7 @@ public class BattleScene : MonoBehaviour
     {
         //playerCube.GetComponentInChildren<MovementControls>().anim.Play("Armature|Sword_atk01");
 
-        //Get general's location;
-        float generalX;
-        float generalY;
-        float generalZ;
-        generalX = transform.localPosition.x;
-        generalY = transform.localPosition.y;
-        generalZ = transform.localPosition.z;
-
-        //Enemy attack;
-        otherCube.GetComponent<Interact>().PhysicalAttack(generalX,generalY,generalZ);
+        
 
         //Detect player's attack;
         transform.GetComponent<General>().PhysicalAttack();

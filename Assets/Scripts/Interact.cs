@@ -42,7 +42,7 @@ public class Interact : MonoBehaviour
         transform.localPosition = general;
 
         //Wait for 1 second;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
 
         //Move the enemy to the orignal position;
         transform.localPosition = enemy;
