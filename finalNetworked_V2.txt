@@ -1,0 +1,2 @@
+1.added light switch
+2.increate general light range
