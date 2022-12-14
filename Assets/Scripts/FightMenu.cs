@@ -24,8 +24,6 @@ public class FightMenu : MonoBehaviour
         if (FightEnsued)
         {
             Pause();
-            //print("Fight pause");
-
         }
         else
         {
@@ -38,12 +36,10 @@ public class FightMenu : MonoBehaviour
         if (playerPosVector.currentState == PlayerPosVector.MapStates.BATTLE)
         {
             FightEnsued = true;
-            //print(FightEnsued);
         }
         else
         {
             FightEnsued = false;
-            //print(FightEnsued);
         }
     }
 
@@ -57,6 +53,5 @@ public class FightMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         playerObject.GetComponentInChildren<MovementControls>().toggle = false;
-        //playerObject.GetComponentInChildren<MovementControls>().anim.SetInteger("condition", 0);
     }
 }

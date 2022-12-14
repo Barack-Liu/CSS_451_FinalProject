@@ -46,11 +46,4 @@ public class SkillCheck
         }
         return success;
     }
-
-    // No leveling system yet ==> no xp gains. Here for future reference.
-    /*public void AwardXP(int xpGain)
-    {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<StatSheet>().XP += xpGain;
-        Debug.Log("Rewarded with " + xpGain.ToString() + " xp. Current xp: " + GameObject.FindGameObjectWithTag("Player").GetComponent<StatSheet>().XP);
-    }*/
 }

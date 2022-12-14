@@ -117,9 +117,6 @@ public class BattleScene : MonoBehaviour
         
         playerMadeMove = false;
 
-        //animation
-        otherCube.GetComponentInChildren<Animator>().Play("Armature|Attack_01");
-
         // Enemy hit check roll
         Debug.Log("ENEMY attacks.");
         battleUI.battleStatus.text = new string("ENEMY attacks");
@@ -152,10 +149,6 @@ public class BattleScene : MonoBehaviour
 
     public void PlayerTurnAttack()
     {
-        //playerCube.GetComponentInChildren<MovementControls>().anim.Play("Armature|Sword_atk01");
-
-        
-
         //Detect player's attack;
         transform.GetComponent<General>().PhysicalAttack();
 
@@ -189,7 +182,6 @@ public class BattleScene : MonoBehaviour
 
     public void PlayerTurnDefend()
     {
-        //playerCube.GetComponentInChildren<MovementControls>().anim.Play("Armature|Sword_atk01");
 
         //Detect player's defend;
         transform.GetComponent<General>().PhysicalDefend();
@@ -224,7 +216,6 @@ public class BattleScene : MonoBehaviour
 
     public void PlayerTurnSkill()
     {
-        //playerCube.GetComponentInChildren<MovementControls>().anim.Play("Armature|Sword_atk01");
 
         //Detect player's attack;
         transform.GetComponent<General>().MagicAttack();
@@ -314,11 +305,5 @@ public class BattleScene : MonoBehaviour
         currentState = BattleStates.LOSE;
         otherCube.SetActive(false);
         enemies = GameObject.FindGameObjectsWithTag("enemy");
-    }
-
-    private void ReloadLevel()
-    {
-        // Reloads current scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

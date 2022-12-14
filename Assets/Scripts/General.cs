@@ -5,9 +5,6 @@ using UnityEngine;
 public class General : MonoBehaviour
 {
     public SceneNode root;
-    public float HP;
-    public float ATK;
-    public float DEF;
 
     public GameObject magic;
 

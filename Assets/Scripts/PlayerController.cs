@@ -12,12 +12,10 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDir = Vector3.zero;
 
     CharacterController controller;
-    Animator anim;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();
 
     }
 
@@ -27,15 +25,12 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W)) // Player moves forward
             {
-                anim.SetInteger("condition", 1);
-                Debug.Log(anim.GetInteger("condition"));
                 moveDir = new Vector3(0, 0, 1);
                 moveDir *= speed;
                 moveDir = transform.TransformDirection(moveDir); // Moves character in direction depending on orientation, AD keybutton
             }
             if (Input.GetKeyUp(KeyCode.W)) // Stops player from moving
             {
-                anim.SetInteger("condition", 0);
                 moveDir = new Vector3(0, 0, 0);
             }
         }

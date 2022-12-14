@@ -8,8 +8,6 @@ public class PlayerPosVector : ScriptableObject
     public Vector3 initialValue;
     public int sceneTransitions;
     public MapStates currentState;
-    //public GameObject enemy;
-    //public GameObject[] enemies;
 
     public enum MapStates
     {

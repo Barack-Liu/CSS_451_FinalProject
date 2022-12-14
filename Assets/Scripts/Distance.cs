@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Distance
 {
-    // Distance class: must be dragged to a game object. select cubes
-    // within the inspector.
 
     public GameObject playerCube;
     public GameObject otherCube;
